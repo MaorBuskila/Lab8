@@ -45,8 +45,6 @@ void printSymbolTable();
 
 void quit();
 
-void printSectionRow(int, char *, Elf32_Shdr *, int);
-
 Elf32_Shdr *getTableByName(char *);
 
 int getUserInput(int);
@@ -104,11 +102,12 @@ char *dataType(Elf32_Ehdr *header) {
 }
 
 void examineFile() {
-    if (LoadFile() == -1) { exit(EXIT_FAILURE); }
+    if (LoadFile() == -1) {
+        exit(EXIT_FAILURE);
+    }
     header = (Elf32_Ehdr *) map_start;
     if (isELFfile(header)) {
-        printf("Magic Numbers: \t\t %c %c %c\n", header->e_ident[EI_MAG1], header->e_ident[EI_MAG2],
-               header->e_ident[EI_MAG3]);
+        printf("Magic Numbers: \t\t %c %c %c\n", header->e_ident[EI_MAG1], header->e_ident[EI_MAG2],header->e_ident[EI_MAG3]);
         printf("Data encoding scheme:\t\t %s\n", dataType(header));
         printf("Entry point address:\t\t 0x%x\n", header->e_entry);
         printf("file offset of section headers:\t\t %d (bytes into file)\n", header->e_shoff);
@@ -136,7 +135,7 @@ void printSectionName() {
         if (debug) {
             fprintf(stderr, "section table address: %p\n", sections_table);
             fprintf(stderr, "string table entry: %p\n", string_table_entry);
-            printf("[index] \t section_name \t section_address \t section_offset\t section_size \t section_type  \t offset(bytes)\n");
+            printf("[index] \t section_name \t section_address \t section_offset\t\t section_size \t section_type  \t offset(bytes)\n");
 
         } else {
             printf("[index] section_name section_address section_offset section_size  section_type\n");
@@ -150,7 +149,7 @@ void printSectionName() {
             char *type = sectionHeaderType(sections_table[i].sh_type);
 
             if(debug){
-                printf("[%#02d]\t%20.20s\t%#06x\t\t%#06x\t\t%#10.06x\t%13.20s\t%#10x\n",
+                printf("[%#02d]\t%20.20s\t%#06x\t\t\t%#06x\t\t%#10.06x\t%13.20s\t%#10x\n",
                        i, &string_table[sections_table[i].sh_name] ,address,offset2,size,type,offset );
             }
             else{
