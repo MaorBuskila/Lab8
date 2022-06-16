@@ -1,0 +1,7 @@
+task 0a answers:
+	1. entery point address: 0x80482e0 it is specified under "Entry point address"
+	2. 34 section
+	3.1b8 bytes
+	4.entery point is the pointer to the _start (by default). Also, we can find it in the symbol section, num 57
+	5.yes, main is number 60 in symbol section
+	6. its found in the .text section. offset: 080482e0 - 08048388 = A8

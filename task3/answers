@@ -1,0 +1,10 @@
+[66]    00001904        00014           .text                   main
+main function size 136
+main viratul adresss 00000770
+
+
+55 89 E5
+
+50+r: 50 is push, r is register EBP -> 55 push regiter EBP
+89 Move
+E5 mean move from ESP to EBP
